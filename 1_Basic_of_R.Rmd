@@ -1,0 +1,132 @@
+---
+title: "1-Basics_of_R"
+author: "Thomas Merrien"
+date: "2023-04-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, echo=FALSE, include=FALSE}
+l2 <- list(c(1,2,3,4,5), matrix(1:4,2))
+```
+# This is a title
+
+## This is a section title 
+
+### This is a subsection title
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+print("2")
+```
+
+This is very useful to both run code and take notes. We will use this document to run some more complex examples so you do not have to write everything. 
+
+R Markdown documents have several options but we will not focus on them today.
+
+## Objects in R
+
+Now we will create different objects in R and see how to differentiate them.
+
+**Exercise 1: create a list named "l" of numbers from 1 to 5**
+
+```{r}
+```
+
+**Exercise 2: create a vector named "v" of numbers from 1 to 5**
+
+```{r}
+
+```
+
+**Exercise 3: create a dataframe named "d" consisting of 3 columns: the first one will be the species name, the two other ones will be two traits of your choice**
+
+```{r}
+
+```
+
+
+**Exercise 4: Create a matrix "m" of dimension 3 by 2**
+
+```{r}
+
+```
+
+**Exercise 5: create a factor list "f" with the elements high, medium and low in the right order**
+
+```{r}
+
+```
+
+## Exploring your data
+
+For this part we will use a dataframe that we will create now. In this dataframe we will have 20 species named after letters. These species will have a body mass that will be randomly attributed using the _rnorm()_ function, we will see what it does during the data exploration. These species will also have or not the ability to fly.
+
+```{r}
+set.seed(123)
+
+data <- data.frame(Species = letters[1:20], body_mass = rnorm(20, 25,2), fly = sample(c(rep("fly",20),rep("no_fly",20)), 20))
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Exercise 6: Study the different properties of the object l2. What kind of object is it? What is/are the data type.s of this object? What is the dimension of the object?** 
+
+```{r}
+
+```
+
+
+
+## How to do several time the same task : FOR and WHILE loops
+
+You can use FOR loops when you want to repeat several time the same task. It can be iterative or not.
+
+**Exercise 7: Create a loop that will calculate the sum of all numbers from 1 to 10. it will do (1+2+3+4+5+6+7+8+9+10)=55**
+
+```{r}
+
+```
+
+
+**Exercise 8: Create a loop that will calculate the sum of all numbers until the sum reach or decrease 100**
+
+```{r}
+
+```
+
+
+### Recursive naming within a loop
+
+Here is an example of how to create and assign variable names recursively within a loop. For instance if you want to create several variable names to store the results of your operation
+
+```{r}
+for (i in 1:10){ #here I setup my for loop
+  
+  variable_name <- paste("my_variable_name", i, sep="_") #here I create my variable name using the paste function that will create a string that concatenates the different elements I put within brackets. Here it will be "my_variable_name" and the number corresponding to my loop iteration "i". The option sep= is used to assign what will link the different parts of my final string. In that case I used the underscore "_"
+  
+  assign(x = variable_name, value = i) #Here I assign the value i to my new variable. This is a very simple example, but you can actually assigne more complicated results or objects.
+  
+}
+
+
+```
+
+
